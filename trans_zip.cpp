@@ -1,5 +1,6 @@
-//#include <arm64intr.h>
+#if defined(__ARM_NEON) || defined(__ARM_NEON__)
 #include <arm_neon.h>
+#endif
 
 #include <cstdio>
 
@@ -18,7 +19,8 @@ int main() {
     printf("\n");
   }
   printf("----\n");
-  int32_t *p = dst;
+#if defined(__ARM_NEON) || defined(__ARM_NEON__)
+	int32_t *p = dst;
   for (size_t i = 0; i < h - 1; i += 2) {
     int32_t *sp0 = src + i * w;
     int32_t *sp1 = src + (i + 1) * w;
@@ -32,7 +34,7 @@ int main() {
       p += 4;
     }
   }
-
+#endif
   for (size_t i = 0; i < h; ++i) {
     for (size_t j = 0; j < w; ++j) {
       printf("%3d ", dst[i * w + j]);

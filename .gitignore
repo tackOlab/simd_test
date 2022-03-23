@@ -44,4 +44,4 @@ build/
 bin/
 
 #dSYM directory
-#*.dSYM/
+*.dSYM/
